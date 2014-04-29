@@ -1,0 +1,22 @@
+{
+    "name": "chadicus/code-coverage-presentation",
+    "description": "Sample project to show code coverage on php functions",
+    "authors": [
+        {
+            "name": "Chad Gray",
+            "email": "chadwickgray@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "~5.4",
+        "dominionenterprises/util" : "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-0": { "Chadicus": ["src", "tests"] }
+    }
+}

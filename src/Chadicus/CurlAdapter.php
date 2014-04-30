@@ -20,7 +20,7 @@ final class CurlAdapter implements Adapter
     public function send(Request $request)
     {
         if (!extension_loaded('curl')) {
-            throw new \RuntimeExtension('cURL extension must be enabled');
+            throw new \RuntimeException('cURL extension must be enabled');
         }
 
         $curlHeaders = array('Expect:');//stops curl automatically putting in expect 100.

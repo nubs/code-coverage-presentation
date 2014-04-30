@@ -8,6 +8,18 @@ namespace Chadicus;
  */
 final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
 {
+    public static $extensionLoaded = null;
+
+    /**
+     * Sets up each test.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        self::$extensionLoaded = null;
+    }
+
     /**
      * Verify basic behavior of send.
      *
@@ -70,4 +82,40 @@ final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
     {
         (new CurlAdapter())->send(new Request('not under test', 'foo', [], []));
     }
+
+    /**
+     * Verify RuntimeException is thrown when curl extension is not loaded
+     *
+     * @test
+     * @covers ::send
+     * @uses \Chadicus\Request
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage cURL extension must be enabled
+     *
+     * @return void
+     */
+    public function sendCurlNotLoaded()
+    {
+        self::$extensionLoaded = function ($name) {
+            return false;
+        };
+
+        (new CurlAdapter())->send(new Request('not under test', 'foo', [], []));
+    }
+}
+
+/**
+ * Custom override of \extension_loaded
+ *
+ * @param string $name The extension name.
+ *
+ * @return boolean
+ */
+function extension_loaded($name)
+{
+    if (CurlAdapterTest::$extensionLoaded === null) {
+        return \extension_loaded($name);
+    }
+
+    return call_user_func_array(CurlAdapterTest::$extensionLoaded, array($name));
 }

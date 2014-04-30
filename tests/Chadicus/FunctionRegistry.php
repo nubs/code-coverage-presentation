@@ -30,7 +30,7 @@ final class FunctionRegistry
      */
     public static function get($name)
     {
-        if (array_key_exists($name, self::$functions)) {
+        if (\array_key_exists($name, self::$functions)) {
             return self::$functions[$name];
         }
 
@@ -41,70 +41,28 @@ final class FunctionRegistry
     /**
      * Sets all custom function properties to null.
      *
+     * @param array $extensions Array of PHP extensions whose functions will be mocked.
+     *
      * @return void
      */
-    public static function reset()
+    public static function reset(array $extensions = array())
     {
         self::$functions = array();
+        $namespace = __NAMESPACE__;
+        foreach ($extensions as $extension) {
+            foreach (\get_extension_funcs($extension) as $name) {
+                //If it's already defined skip it.
+                if (\function_exists("{$namespace}\\{$name}")) {
+                    continue;
+                }
+
+                eval("
+                    namespace {$namespace};
+                    function {$name}() {
+                        return \call_user_func_array(FunctionRegistry::get('{$name}'), \\func_get_args());
+                    }
+                ");
+            }
+        }
     }
-}
-
-/**
- * Custom override of \extension_loaded().
- *
- * @return boolean
- */
-function extension_loaded()
-{
-    return call_user_func_array(FunctionRegistry::get('extension_loaded'), func_get_args());
-}
-
-/**
- * Custom override of \curl_init().
- *
- * @return mixed
- */
-function curl_init()
-{
-    return call_user_func_array(FunctionRegistry::get('curl_init'), func_get_args());
-}
-
-/**
- * Custom override of \curl_setopt_array().
- *
- * @return boolean
- */
-function curl_setopt_array()
-{
-    return call_user_func_array(FunctionRegistry::get('curl_setopt_array'), func_get_args());
-}
-
-/**
- * Custom override of \curl_exec().
- *
- * @return string
- */
-function curl_exec()
-{
-    return call_user_func_array(FunctionRegistry::get('curl_exec'), func_get_args());
-}
-
-/**
- * Custom override of \curl_error().
- *
- * @return string
- */
-function curl_error()
-{
-    return call_user_func_array(FunctionRegistry::get('curl_error'), func_get_args());
-}
-
-/**
- * Custom override of \curl_getinfo().
- *
- * @return string
- */
-function curl_getinfo()
-{
-    return call_user_func_array(FunctionRegistry::get('curl_getinfo'), func_get_args());
 }

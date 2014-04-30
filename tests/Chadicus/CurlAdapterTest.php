@@ -15,7 +15,7 @@ final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        FunctionRegistry::reset();
+        FunctionRegistry::reset(array('core', 'curl'));
     }
 
     /**

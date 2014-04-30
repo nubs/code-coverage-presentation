@@ -8,8 +8,6 @@ namespace Chadicus;
  */
 final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
 {
-    public static $extensionLoaded = null;
-
     /**
      * Sets up each test.
      *
@@ -17,7 +15,7 @@ final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        self::$extensionLoaded = null;
+        FunctionRegistry::reset();
     }
 
     /**
@@ -96,26 +94,13 @@ final class CurlAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function sendCurlNotLoaded()
     {
-        self::$extensionLoaded = function ($name) {
-            return false;
-        };
+        FunctionRegistry::set(
+            'extension_loaded',
+            function ($name) {
+                return false;
+            }
+        );
 
         (new CurlAdapter())->send(new Request('not under test', 'foo', [], []));
     }
-}
-
-/**
- * Custom override of \extension_loaded
- *
- * @param string $name The extension name.
- *
- * @return boolean
- */
-function extension_loaded($name)
-{
-    if (CurlAdapterTest::$extensionLoaded === null) {
-        return \extension_loaded($name);
-    }
-
-    return call_user_func_array(CurlAdapterTest::$extensionLoaded, array($name));
 }

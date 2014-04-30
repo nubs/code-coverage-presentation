@@ -52,11 +52,59 @@ final class FunctionRegistry
 /**
  * Custom override of \extension_loaded().
  *
- * @param string $name The extension name.
+ * @return boolean
+ */
+function extension_loaded()
+{
+    return call_user_func_array(FunctionRegistry::get('extension_loaded'), func_get_args());
+}
+
+/**
+ * Custom override of \curl_init().
+ *
+ * @return mixed
+ */
+function curl_init()
+{
+    return call_user_func_array(FunctionRegistry::get('curl_init'), func_get_args());
+}
+
+/**
+ * Custom override of \curl_setopt_array().
  *
  * @return boolean
  */
-function extension_loaded($name)
+function curl_setopt_array()
 {
-    return call_user_func(FunctionRegistry::get('extension_loaded'), $name);
+    return call_user_func_array(FunctionRegistry::get('curl_setopt_array'), func_get_args());
+}
+
+/**
+ * Custom override of \curl_exec().
+ *
+ * @return string
+ */
+function curl_exec()
+{
+    return call_user_func_array(FunctionRegistry::get('curl_exec'), func_get_args());
+}
+
+/**
+ * Custom override of \curl_error().
+ *
+ * @return string
+ */
+function curl_error()
+{
+    return call_user_func_array(FunctionRegistry::get('curl_error'), func_get_args());
+}
+
+/**
+ * Custom override of \curl_getinfo().
+ *
+ * @return string
+ */
+function curl_getinfo()
+{
+    return call_user_func_array(FunctionRegistry::get('curl_getinfo'), func_get_args());
 }

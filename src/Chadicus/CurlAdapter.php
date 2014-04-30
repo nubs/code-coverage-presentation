@@ -43,26 +43,26 @@ final class CurlAdapter implements Adapter
 
         $curl = curl_init();
         if ($curl === false) {
-            throw new Exception('Unable to initialize connection');
+            throw new \Exception('Unable to initialize connection');
         }
 
         if (curl_setopt_array($curl, $curlOptions) === false) {
-            throw new Exception('Unable to prepare connection');
+            throw new \Exception('Unable to prepare connection');
         }
 
         $result = curl_exec($curl);
         if ($result === false) {
-            throw new Exception(curl_error($curl));
+            throw new \Exception(curl_error($curl));
         }
 
         $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         if ($headerSize === false) {
-            throw new Exception('Unable to determine header size');
+            throw new \Exception('Unable to determine header size');
         }
 
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         if ($httpCode === false) {
-            throw new Exception('Unable to determine response HTTP code');
+            throw new \Exception('Unable to determine response HTTP code');
         }
 
         $headers = Util\Http::parseHeaders(substr($result, 0, $headerSize - 1));
@@ -79,7 +79,7 @@ final class CurlAdapter implements Adapter
         );
 
         if ($error !== null) {
-            throw new Exception("Unable to parse response: {$error}");
+            throw new \Exception("Unable to parse response: {$error}");
         }
 
         return new Response($httpCode, $headers, $body ?: []);

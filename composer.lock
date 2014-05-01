@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7909a96195689db3d61ae3922c02ee72",
+    "hash": "f1848bf760aa88ce00e7dd32c122f7f7",
     "packages": [
         {
             "name": "dominionenterprises/util",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dominionenterprises/util-php.git",
-                "reference": "6c9c2cd2041a4bd4b9429ddec1df1bf477bbbe78"
+                "reference": "1f65b87a03c1d6c6a7ca5c18b6d5294895c68f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/6c9c2cd2041a4bd4b9429ddec1df1bf477bbbe78",
-                "reference": "6c9c2cd2041a4bd4b9429ddec1df1bf477bbbe78",
+                "url": "https://api.github.com/repos/dominionenterprises/util-php/zipball/1f65b87a03c1d6c6a7ca5c18b6d5294895c68f4d",
+                "reference": "1f65b87a03c1d6c6a7ca5c18b6d5294895c68f4d",
                 "shasum": ""
             },
             "require": {
@@ -58,39 +58,92 @@
             "keywords": [
                 "utility"
             ],
-            "time": "2014-03-04 16:09:51"
+            "time": "2014-04-08 16:48:07"
         }
     ],
     "packages-dev": [
         {
-            "name": "phpunit/php-code-coverage",
-            "version": "2.0.5",
+            "name": "chadicus/test-helpers",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db"
+                "url": "https://github.com/chadicus/test-helpers.git",
+                "reference": "a1e8750dc06226a7e5865fe5904930d8c032a936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3dcca2120451b98a98fe60221ca279a184ee64db",
-                "reference": "3dcca2120451b98a98fe60221ca279a184ee64db",
+                "url": "https://api.github.com/repos/chadicus/test-helpers/zipball/a1e8750dc06226a7e5865fe5904930d8c032a936",
+                "reference": "a1e8750dc06226a7e5865fe5904930d8c032a936",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.4"
+            },
+            "require-dev": {
+                "chadicus/coding-standard": "dev-master",
+                "phpdocumentor/phpdocumentor": "~2.0",
+                "phploc/phploc": "~2.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Chadicus": [
+                        "src",
+                        "tests"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chad Gray",
+                    "email": "chadwickgray@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Classes designed to assist with PHPUnit testing",
+            "keywords": [
+                "functions",
+                "mock",
+                "phpunit",
+                "test"
+            ],
+            "time": "2014-04-30 21:05:15"
+        },
+        {
+            "name": "phpunit/php-code-coverage",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
+                "reference": "bccecf50645068b44f49a84009e2a0499a500b99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bccecf50645068b44f49a84009e2a0499a500b99",
+                "reference": "bccecf50645068b44f49a84009e2a0499a500b99",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": "~1.3.1",
-                "phpunit/php-text-template": "~1.2",
+                "phpunit/php-text-template": "~1.2.0",
                 "phpunit/php-token-stream": "~1.2.2",
-                "sebastian/environment": "~1.0",
+                "sebastian/environment": "~1.0.0",
                 "sebastian/version": "~1.0.3"
             },
             "require-dev": {
                 "ext-xdebug": ">=2.1.4",
-                "phpunit/phpunit": ">=4.0.0,<4.1.0"
+                "phpunit/phpunit": "~4.0.14"
             },
             "suggest": {
                 "ext-dom": "*",
-                "ext-xdebug": ">=2.2.1"
+                "ext-xdebug": ">=2.2.1",
+                "ext-xmlwriter": "*"
             },
             "type": "library",
             "extra": {
@@ -124,7 +177,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-28 10:54:55"
+            "time": "2014-04-30 09:01:21"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -311,16 +364,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.0.18",
+            "version": "4.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "95d18c9b84f5f9b200f53363b717910446686768"
+                "reference": "8bf3a13f131f23c154f766482aaff568ecdc7135"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/95d18c9b84f5f9b200f53363b717910446686768",
-                "reference": "95d18c9b84f5f9b200f53363b717910446686768",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8bf3a13f131f23c154f766482aaff568ecdc7135",
+                "reference": "8bf3a13f131f23c154f766482aaff568ecdc7135",
                 "shasum": ""
             },
             "require": {
@@ -380,7 +433,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-29 07:33:55"
+            "time": "2014-04-30 12:27:38"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -695,9 +748,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "chadicus/test-helpers": 20
+    },
     "platform": {
         "php": "~5.4"
     },

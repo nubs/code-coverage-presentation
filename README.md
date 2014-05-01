@@ -3,7 +3,7 @@ This simple project has a request and a response object as well as an adapter in
 
 
 # Inital Release
-Currently all of the project's tests pass however code coverage is not 100%.  You can see this by downloading the code and running `build.php`
+Currently all of the project's tests pass however code coverage is not 100%.  You can see this by downloading the code and running `build.php`.
 
 
 ## Here are a few cases in which testing may be difficult.
@@ -42,4 +42,4 @@ if ($curl === false) {
 
 # Disclaimer
 
-The use of PHP's `curl` library is simply to demonstrate the mocking functionality. If you want to do http requests in your production code use [Guzzle](https://github.com/guzzle/guzzle)
+The use of PHP's `curl` library is simply to demonstrate the mocking functionality. If you want to do http requests in your production code use [Guzzle](https://github.com/guzzle/guzzle).
